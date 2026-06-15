@@ -55,12 +55,11 @@ class EvaluationRequest(Base, TimestampMixin, UUIDPrimaryKeyMixin):
 
     # ─── Relationships ────────────────────────────────────────────────────────────
     user: Mapped["User"] = relationship("User", back_populates="evaluations_requested")
-    result: Mapped[EvaluationResult | None] = relationship("EvaluationResult", back_populates="request", uselist=False)
+    result: Mapped["EvaluationResult | None"] = relationship("EvaluationResult", back_populates="request", uselist=False)
 
     def __repr__(self) -> str:
         return (
             f"<EvaluationRequest(id={self.id}"
             f"type={self.content_type} status={self.status}>"
         )
-    
     
